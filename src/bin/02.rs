@@ -1,17 +1,10 @@
 advent_of_code::solution!(2);
-use std::{str::FromStr, collections::HashMap, error::Error};
+use std::{str::FromStr, collections::HashMap};
 
 #[derive(Debug, PartialEq)]
 pub struct Game {
     id: u32,
     cubes: Vec<Vec<Vec<String>>>,
-}
-
-pub fn vec_to_map(v: &Vec<&str>) -> (String, String){
-    println!("key: {:?}", v[1]);
-    println!("val: {:?}", v[0]);
-
-    return (v[1].to_owned(), v[0].to_owned())
 }
 
 impl FromStr for Game {
