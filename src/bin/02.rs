@@ -9,12 +9,14 @@ pub fn part_two(input: &str) -> Option<u32> {
 }
 
 #[cfg(test)]
-mod tests {
+mod test_day2 {
     use super::*;
 
     #[test]
     fn test_part_one() {
         let result = part_one(&advent_of_code::template::read_file("examples", DAY));
+        println!("Hello day 2 tests");
+
         assert_eq!(result, None);
     }
 

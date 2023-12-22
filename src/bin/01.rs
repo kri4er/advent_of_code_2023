@@ -88,44 +88,20 @@ pub fn try_get_last_number(data: &str, mapping: &HashMap<&str, &str>) -> Option<
 
 
 #[cfg(test)]
-mod tests {
+mod test_day1 {
     use super::*;
 
     #[test]
     fn test_part_one() {
         let result = part_one(&advent_of_code::template::read_file("examples", DAY));
         println!("{:?}", result);
-        //assert_eq!(result, None);
+        assert_eq!(result, Some(0));
     }
 
     #[test]
     fn test_part_two() {
-        let mut mapping = HashMap::new();
-        mapping.insert("one", "1");
-        mapping.insert("two", "2");
-        mapping.insert("three", "3");
-        mapping.insert("four", "4");
-        mapping.insert("five", "5");
-        mapping.insert("six", "6");
-        mapping.insert("seven", "7");
-        mapping.insert("eight", "8");
-        mapping.insert("nine", "9");
-        mapping.insert("1", "1");
-        mapping.insert("2", "2");
-        mapping.insert("3", "3");
-        mapping.insert("4", "4");
-        mapping.insert("5", "5");
-        mapping.insert("6", "6");
-        mapping.insert("7", "7");
-        mapping.insert("8", "8");
-        mapping.insert("9", "9");
-
-        let data = "bonedamnthing";
-        let number = try_get_number(data, &mapping);
-        println!("LOGME: found a number: {:?}", number);
-
         let result = part_two(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, None);
+        assert_eq!(result, Some(0));
     }
 
     #[test]
