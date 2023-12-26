@@ -45,8 +45,7 @@ pub fn part_one(input: &str) -> Option<u32> {
 
     for i in 0..m.len() {
         for j in 0..m[i].len() {
-            let val:char = m[i][j];
-            if !val.is_numeric() && val != '.' {
+            if !m[i][j].is_numeric() && m[i][j] != '.' {
                 for p in DIRS {
                     let search_i:i32 = i as i32 + p.0;
                     let search_j:i32 = j as i32 + p.1;
@@ -72,8 +71,7 @@ pub fn part_two(input: &str) -> Option<u32> {
 
     for i in 0..m.len() {
         for j in 0..m[i].len() {
-            let val:char = m[i][j];
-            if val == '*' {
+            if m[i][j] == '*' {
                 let mut nums:Vec<u32> = Vec::new();
                 for p in DIRS {
                     let search_i:i32 = i as i32 + p.0;
