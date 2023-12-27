@@ -37,7 +37,7 @@ impl FromStr for Garden {
                     }).collect()
             }).collect();
 
-        Ok(Garden { seeds: seeds, rules: maps })
+        Ok(Garden { seeds, rules: maps })
     }
 }
 
