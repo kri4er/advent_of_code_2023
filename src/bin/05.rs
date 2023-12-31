@@ -1,4 +1,4 @@
-use std::str::FromStr;
+use std::{str::FromStr, io::Error};
 use itertools::Itertools;
 
 
@@ -42,6 +42,7 @@ impl FromStr for Garden {
         Ok(Garden { seeds, rules: maps })
     }
 }
+
 
 pub fn part_one(input: &str) -> Option<i64> {
     let Garden { seeds, rules } = Garden::from_str(input).expect("Can't parse garden!");
