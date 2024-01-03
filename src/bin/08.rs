@@ -54,12 +54,20 @@ impl FromStr for Game {
 }
 
 pub fn part_one(input: &str) -> Option<i64> {
-    let Game{directions, graph} = Game::from_str(input).expect("Can't parse game");
+    let game = Game::from_str(input).expect("Can't parse game");
+
+    let count_steps = count_till_reach(&game, "AAA", "ZZZ");
+    Some(count_steps)
+}
+
+fn count_till_reach(game: &Game, start: &str, end: &str) -> i64 {
+    let Game{directions, graph} = game;
 
     let mut dirs = directions.iter().cycle();
     let mut count_steps:i64 = 0;
-    let mut current = "AAA";
-    while current != "ZZZ" {
+    let mut current = start.clone();
+    let end = end.clone();
+    while !current.ends_with(end) {
         let dir = dirs.next().unwrap();
         let Destinations { left, right } = graph.get(current).unwrap();
         current = match dir {
@@ -68,11 +76,36 @@ pub fn part_one(input: &str) -> Option<i64> {
         };
         count_steps += 1;
     }
-    Some(count_steps)
+    count_steps
+}
+fn gcd(mut a: u64, mut b: u64) -> u64 {
+    while b != 0 {
+        let tmp = a;
+        a = b;
+        b = tmp % b;
+    }
+    a
+}
+
+fn lcm(a: u64, b: u64) -> u64 {
+    a * b / gcd(a, b)
 }
 
 pub fn part_two(input: &str) -> Option<i64> {
-    None
+    let game = Game::from_str(input).expect("Can't parse game");
+
+    let ghots:Vec<String> = game.graph
+        .keys()
+        .filter(|k| k.ends_with("A"))
+        .map(|k| k.clone())
+        .collect();
+
+    //println!("Ghosts: {:?}", ghots);
+    let min_shared_cycles = ghots.iter()
+        .map(|ghost| count_till_reach(&game, &ghost, "Z"))
+        .fold(1, |acc, item| lcm(acc, item as u64));
+
+    Some((min_shared_cycles as i64))
 }
 
 #[cfg(test)]
