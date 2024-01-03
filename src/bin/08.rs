@@ -1,4 +1,4 @@
-use std::{str::FromStr, collections::HashMap, num::{ParseIntError, IntErrorKind}, string::ParseError};
+use std::{str::FromStr, collections::HashMap};
 
 advent_of_code::solution!(8);
 
@@ -100,12 +100,11 @@ pub fn part_two(input: &str) -> Option<i64> {
         .map(|k| k.clone())
         .collect();
 
-    //println!("Ghosts: {:?}", ghots);
     let min_shared_cycles = ghots.iter()
         .map(|ghost| count_till_reach(&game, &ghost, "Z"))
         .fold(1, |acc, item| lcm(acc, item as u64));
 
-    Some((min_shared_cycles as i64))
+    Some(min_shared_cycles as i64)
 }
 
 #[cfg(test)]
@@ -121,6 +120,6 @@ mod test_day8 {
     #[test]
     fn test_part_two() {
         let result = part_two(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, None);
+        assert_eq!(result, Some(6));
     }
 }
